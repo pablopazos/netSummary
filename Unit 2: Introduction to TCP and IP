@@ -1,0 +1,70 @@
+The TCP/IP protocol allows computers of different sizes or vendors to communicate between them, using the same or different operating system.
+It has different levels: 
+-Physical + Data Link Layers: They manage communication medium details
+-Aplication layer: It manages the details of a specific application
+
++Levels and protocols:
+To interconnect two or more networks (and create an internetwork or internet) I need a router:
+-Hardware and software with a specific goal that allows to connect different types of physical networks.
+
+Transport and application use protocols end-to-end.
+The network layer uses a hop-by-hop protocol that is used in end systems and in every router.
+Other LAN interconnection devices: hubs and switches. They implement the physical and data link layers.
+Hub: It repeats every frame received through its input ports to all other output ports:
+-It only implements the physical layer.
+-It works as it was a single LAN network.
+Switch: It allows connecting different devices to create a LAN.
+
++Levels and protocols in TCP/IP:
+Application, transport, network, link and physical.
+
+Devices on the internet use an IP address to identify themselves. Each interface must have a 32-bit IP address, where each byte is represented in decimal and separated by dots.
+Every IP has two parts, the network ID and the host ID, with a variable size.
+
+Class,Leading Bits,Network ID Size,Host ID Size,Address Range,Use Case
+A,0,1 byte,3 bytes,0.0.0.0 to 127.255.255.255,Very large networks
+B,10,2 bytes,2 bytes,128.0.0.0 to 191.255.255.255,Medium to large networks
+C,110,3 bytes,1 byte,192.0.0.0 to 223.255.255.255,Small networks (LANs)
+D,1110,-,-,224.0.0.0 to 239.255.255.255,Multicast
+E,1111,-,-,240.0.0.0 to 255.255.255.255,Reserved (Experimental)
+
+Private IP: Used inside your local network (LAN). It is free and can be reused by other people in their own homes.
+Public IP: Your "address" on the global Internet. It is unique worldwide and is assigned by your Internet Service Provider (ISP).
+NAT (Network Address Translation): The process performed by the router to allow multiple devices with private IPs to access the Internet using a single public IP.
+
+Loopback Interface (Localhost):
+The Loopback is a virtual network interface used by a computer to communicate with itself.
+IP Range: 127.x.x.x (Class A). Usually 127.0.0.1.
+Hostname: localhost.
+Key Behavior: Packets sent to loopback never leave the machine (they don't touch the physical network).
+Why? To avoid unnecessary network traffic and allow testing of network software without a physical connection.
+Multicast/Broadcast: These packets are copied to the loopback interface and sent to the network.
+
+IP Address Types (Unicast, Broadcast, Multicast)
+Type	Destination	Protocol Support
+Unicast	One specific interface.	TCP / UDP
+Broadcast	All machines on the network.	UDP Only
+Multicast	A specific group of subscribed machines.	UDP Only
+Broadcast Addresses: 255.255.255.255 or <Network_ID>.255.
+Problem: Causes overhead because all machines must process the packet up to the Transport Layer before discarding it.
+Multicast: Solves the broadcast problem. Machines must "subscribe" to a group. If not subscribed, the network interface discards the packet immediately.
+224.0.0.1: All multicast-capable hosts.
+224.0.0.2: All routers on the network.
+
+DNS is a distributed database that translates human-readable names into IP addresses.
+Function: Maps hostnames (www.google.com) to IPs (8.8.8.8).
+Organization: Each entity manages its own DNS server.
+Useful commands: * dig <domain> (To query DNS records in Linux).
+whois <domain> (To find ownership information).
+
+Port Numbers
+If the IP address identifies the computer, the Port Number identifies the specific application (process).
+Format: 16-bit number (Range: 1 to 65535).
+Well-Known Ports (1 – 1023): Reserved for standard services (Servers).
+80: HTTP (Web)
+21: FTP (Files)
+25: SMTP (Email)
+53: DNS
+Ephemeral Ports: Temporary ports assigned to clients for a single session.
+Linux Tip: Check /etc/services to see the list of ports and services on your system.
+
