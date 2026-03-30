@@ -1,0 +1,77 @@
+Two processes on two different end systems communicate by exchanging messages through a computer network.
+Client-server model:
+- Cliente send a request to the server.
+- Server receives the query, processes it and send an answer.
+Peer-to-peer model: both endpoints provide services and request services.
+Application layer protocols:
+- Define the format and the order of message exchange.
+- Define the actions taken upon transmission or reception of messages.
+
+Web: an application/service running on the Internet that combined four existing concepts:
+- Hypertext.
+- Resource identifiers.
+- Client-server model.
+- Markup language.
+
+URI: identifier that allows access to a web resource. Structure: 
+- Scheme: (https, http).
+- Authority: The server's name or IP address.
+- Path: Used to access the specific resource. It is similar to directory structures in Linux.
+- Query (Optional): Additional information, typically consisting of variables and their values.
+- Fragment (Optional): Identifies a specific subsection within a resource.
+
+URL=URI-fragment.
+
+HTTP: 
+- Backward compatible.
+- Uses TCP: Every HTTP message sent by the client or server reaches the other end without modifications.
+- Defines how clients (browsers) request Web pages and how servers transfer them.
+- Stateless protocol: The server does not store information about the client's previous requests.
+- HTTPS: HTTP over Transport Layer Security (TLS). It guarantees communication confidentiality, integrity, and authentication.
+
+URL Request Process: (http://www.fic.udc.es/presentacion)
+- The HTTP client initiates a TCP connection with the server www.fic.udc.es in port 80.
+- The HTTP client sends a request message to the server, asking for the object.
+- The server receives the request, locates the object, encapsulates it into an HTTP response message, and sends it.
+- The server closes the TCP connection.
+- The HTTP client receives the response and closes the TCP connection.
+- The client extracts the file from the response message, parses the HTML file, and finds references to other objects. 
+- For each object, repeat from step 1.
+- Depending on the browser, new connections may be opened in parallel.
+
+HTTP/1.1 Default Behavior:
+- The HTTP server keeps the TCP connection open, waiting for new requests.
+- The server will close the connection after a period of inactivity (timeout).
+- Without pipelining: The client only sends a new request once it has received the previous response.
+- With pipelining: The client sends a request as soon as it finds a reference to an object.
+
+HTTP/2 – RFC 7540 (May 2015): 
+- Based on Google's SPDY protocol.
+- No changes to thw protocol: Methods, status codes, etc., remain the same. It only changes how data is transmitted.
+- Full Multiplexing over a single TCP connection: Web objects are downloaded asynchronously.
+- Binary protocol and header compression.
+- Server Push: The server can send objects to the client's cache before the client even asks for them.
+
+HTTP/3 – RFC 9114 (June 2022): 
+- Uses Google's QUIC protocol: QUIC (Quick UDP Internet Connections) is an open-source protocol based on UDP.
+- Maintains full multiplexing, offers lower latency, provides per-stream flow control, and natively includes Transport Layer Security.
+
+HTTP Response: Status Line:
+- Status Line: Version + Status Code + Reason Phrase.
+- Status codes are grouped into 5 categories:
+  - Informational (1xx): e.g., 100 Continue.
+  - Success (2xx): e.g., 200 OK.
+  - Redirection (3xx): e.g., 301 Moved Permanently.
+  - Client Error (4xx): e.g., 404 Not Found.
+  - Server Error (5xx): e.g., 500 Internal Server Error.
+
+HTTP is stateless, so cookies are used to maintain state across multiple requests.
+Using a cache reduces object recovery delays and decreases network traffic. However, a problem appears when a cached copy of an object becomes obsolete.
+To solve this, the used via is If-Modified-Since header; the server will only return the full object if it has been modified after the specified date.
+
+
+
+
+
+
+
