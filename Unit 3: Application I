@@ -69,6 +69,10 @@ HTTP is stateless, so cookies are used to maintain state across multiple request
 Using a cache reduces object recovery delays and decreases network traffic. However, a problem appears when a cached copy of an object becomes obsolete.
 To solve this, the used via is If-Modified-Since header; the server will only return the full object if it has been modified after the specified date.
 
+Protocols to access gmail: POP3 and IMAP
+
+MIME: it is like a label that indicates the browser what type of file is receiving.
+
 
 
 
