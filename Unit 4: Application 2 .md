@@ -64,5 +64,5 @@ Unlike the client-server model, P2P consists of **peers** that act as both clien
   *Structured*: Organized topographies like DHT (Distributed Hash Table).
   *Unstructured*: Peers connect randomly.
 * **By Organization**:
-    * [cite_start]*Centralized*: Uses a central node for management[cite: 71].
-    * [cite_start]*Decentralized*: No central control mechanism[cite: 72].
+  *Centralized*: Uses a central node for management[cite: 71].
+  *Decentralized*: No central control mechanism[cite: 72].
